@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.file.".config/waybar/config".source = ./waybar.conf;
+  home.file.".config/waybar/config".source = ./dotfiles/waybar.conf;
   programs = {
     git.enable = true;
     ssh.enable = true;
