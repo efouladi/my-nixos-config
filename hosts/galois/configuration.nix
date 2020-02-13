@@ -32,6 +32,7 @@ in
 
   home-manager.users.shafo = { ... }: {
     imports = [ ../../common/home-manager.nix ];
+    home.file.".config/sway/config".source = ./dotfiles/sway.conf;
     programs.git = {
       userEmail = "efouladi@gmx.com";
       userName = "Shayan Fouladi";
