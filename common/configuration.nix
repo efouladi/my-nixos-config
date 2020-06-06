@@ -27,6 +27,12 @@ in
     };
   };
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
+
   imports =
     [
       ./sway.nix
@@ -48,6 +54,7 @@ in
 
   environment.systemPackages = with pkgs; [
     emacs firefox kitty xdg_utils desktop-file-utils git xdg-desktop-portal python-with-my-packages dropbox keepassxc pavucontrol jq networkmanagerapplet gnome3.adwaita-icon-theme wl-clipboard
+    emacsUnstable
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
