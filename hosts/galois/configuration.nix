@@ -23,10 +23,12 @@ in
   };
 
   users.users.shafo = {
+  programs.adb.enable = true;
     home = "/home/shafo";
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
                     "libvirtd"
+                    "adbusers"
   };
 
   swapDevices = [ { device = "/swapfile"; size = 4096; } ];
