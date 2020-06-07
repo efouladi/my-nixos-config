@@ -1,5 +1,11 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
 
+let
+   waylandOverlay = (import (builtins.fetchTarball https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz));
+   firefoxWaylandOverlay = (import (builtins.fetchTarball https://github.com/calbrecht/nixpkgs-overlays/archive/master.tar.gz));
+in
+{
+  nixpkgs.overlays = [ waylandOverlay firefoxWaylandOverlay ];
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
@@ -9,9 +15,14 @@
       waybar # status bar
       mako # notification daemon
       kanshi # autorandr
-      unstable.wofi
-      unstable.wdisplays
-      unstable.wl-clipboard
+      wofi
+      wdisplays
+      wl-clipboard
+      xdg-desktop-portal-wlr
+      firefox-wayland-pipewire-unwrapped
+      firefox-wayland-pipewire
+      pipewire
+      xdg-desktop-portal
     ];
   };
 
