@@ -29,6 +29,7 @@ in
     extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
                     "libvirtd"
                     "adbusers"
+                    "video"
   };
 
   swapDevices = [ { device = "/swapfile"; size = 4096; } ];
