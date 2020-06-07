@@ -46,4 +46,11 @@ in
       signing.signByDefault = true;
     };
   };
+  services.syncthing = {
+    enable = true;
+    user = "shafo";
+    dataDir = "/home/shafo/.syncthing";
+    configDir = "/home/shafo/.syncthing";
+    openDefaultPorts = true;
+  };
 }
