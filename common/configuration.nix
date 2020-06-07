@@ -105,5 +105,9 @@ in
     font-awesome
   ];
   virtualisation.libvirtd.enable = true;
+  programs.gnupg.agent = {
+   enable = true;
+   pinentryFlavor = "gnome3";
+  };
 }
 
