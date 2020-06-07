@@ -63,6 +63,13 @@ in
   programs.waybar.enable = true;
   services.pipewire.enable = false;
 
+  services.fcron = {
+    enable = true;
+    systab = ''
+      &mail(false) 1 7 * * * /bin/sh -c "curl 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1' | jq -r .images[0].url | awk '{print \"https://www.bing.com\"\$1}' | xargs curl -o '/tmp/wallpaper.jpg' && swaymsg -s /run/user/1000/sway-ipc.1000.\$(pidof sway).sock output \"*\" background /tmp/wallpaper.jpg fill";
+    '';
+  };
+
 
   xdg = {
     icons.enable = true;
