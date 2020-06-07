@@ -22,14 +22,18 @@ in
     wlp2s0.useDHCP = true;
   };
 
-  users.users.shafo = {
   programs.adb.enable = true;
+
+  users.extraUsers.shafo = {
     home = "/home/shafo";
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel"
+                    "networkmanager"
+                    "audio"
                     "libvirtd"
                     "adbusers"
                     "video"
+                  ];
   };
 
   swapDevices = [ { device = "/swapfile"; size = 4096; } ];
