@@ -54,9 +54,23 @@ in
   time.timeZone = "Europe/Stockholm";
 
   environment.systemPackages = with pkgs; [
-    emacs firefox kitty xdg_utils desktop-file-utils git xdg-desktop-portal python-with-my-packages dropbox keepassxc pavucontrol jq networkmanagerapplet gnome3.adwaita-icon-theme wl-clipboard
     emacsUnstable
+    kitty
+    xdg_utils
+    desktop-file-utils
+    git
+    python-with-my-packages
+    dropbox
+    keepassxc
+    pavucontrol
+    jq
+    networkmanagerapplet
+    hicolor-icon-theme
+    gnome3.adwaita-icon-theme
+    gnome3.dconf
+    transmission
     virt-manager
+    pinentry-gnome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -65,7 +79,6 @@ in
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   #services.openssh.enable = true;
   #services.openssh.permitRootLogin = "yes";
@@ -104,6 +117,7 @@ in
   fonts.fonts = with pkgs; [
     font-awesome
   ];
+
   virtualisation.libvirtd.enable = true;
   programs.gnupg.agent = {
    enable = true;
