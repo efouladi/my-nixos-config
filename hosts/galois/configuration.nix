@@ -32,7 +32,10 @@ in
 
   home-manager.users.shafo = { ... }: {
     imports = [ ../../common/home-manager.nix ];
-    home.file.".config/sway/config".source = ./dotfiles/sway.conf;
+    home.file = {
+      ".config/sway/config".source = ./dotfiles/sway.conf;
+      ".config/kanshi/config".source = ./dotfiles/kanshi.conf;
+    };
     programs.git = {
       userEmail = "efouladi@gmx.com";
       userName = "Shayan Fouladi";
