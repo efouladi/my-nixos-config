@@ -56,6 +56,7 @@ in
   environment.systemPackages = with pkgs; [
     emacs firefox kitty xdg_utils desktop-file-utils git xdg-desktop-portal python-with-my-packages dropbox keepassxc pavucontrol jq networkmanagerapplet gnome3.adwaita-icon-theme wl-clipboard
     emacsUnstable
+    virt-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -103,5 +104,6 @@ in
   fonts.fonts = with pkgs; [
     font-awesome
   ];
+  virtualisation.libvirtd.enable = true;
 }
 

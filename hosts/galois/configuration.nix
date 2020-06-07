@@ -26,6 +26,7 @@ in
     home = "/home/shafo";
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
+                    "libvirtd"
   };
 
   swapDevices = [ { device = "/swapfile"; size = 4096; } ];
