@@ -29,7 +29,7 @@ in
 
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      url = https://github.com/efouladi/emacs-overlay/archive/master.tar.gz;
     }))
   ];
 
@@ -54,7 +54,7 @@ in
   time.timeZone = "Europe/Stockholm";
 
   environment.systemPackages = with pkgs; [
-    emacsUnstable
+    emacsGccPureGTK
     kitty
     xdg_utils
     desktop-file-utils
