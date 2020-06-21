@@ -55,6 +55,12 @@ in
 
   time.timeZone = "Europe/Stockholm";
 
+  nix = {
+     # this is correct, we're using `nixpkgs-wayland` to cache `nixpkgs-chromium` packages
+      binaryCachePublicKeys = [ "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA=" ];
+      binaryCaches = [ "https://nixpkgs-wayland.cachix.org" ];
+  };
+
   environment.systemPackages = with pkgs; [
     emacsGccPureGTK
     kitty
