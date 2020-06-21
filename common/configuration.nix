@@ -24,13 +24,15 @@ in
       unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
+      chromium = pkgs.chromium.override { useOzone = true; enableVaapi = true; };
     };
   };
 
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/efouladi/emacs-overlay/archive/master.tar.gz;
-    }))
+    (import (builtins.fetchTarball https://github.com/efouladi/emacs-overlay/archive/master.tar.gz))
+
+    # firefox wayland overlay
+    (import (builtins.fetchTarball https://github.com/calbrecht/nixpkgs-overlays/archive/master.tar.gz))
   ];
 
   imports =
@@ -71,6 +73,10 @@ in
     transmission
     virt-manager
     pinentry-gnome
+    firefox-wayland-pipewire-unwrapped
+    firefox-wayland-pipewire
+    pipewire
+    chromium
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

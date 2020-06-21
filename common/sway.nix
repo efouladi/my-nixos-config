@@ -2,10 +2,9 @@
 
 let
    waylandOverlay = (import (builtins.fetchTarball https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz));
-   firefoxWaylandOverlay = (import (builtins.fetchTarball https://github.com/calbrecht/nixpkgs-overlays/archive/master.tar.gz));
 in
 {
-  nixpkgs.overlays = [ waylandOverlay firefoxWaylandOverlay ];
+  nixpkgs.overlays = [ waylandOverlay ];
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
@@ -19,9 +18,6 @@ in
       wdisplays
       wl-clipboard
       xdg-desktop-portal-wlr
-      firefox-wayland-pipewire-unwrapped
-      firefox-wayland-pipewire
-      pipewire
       xdg-desktop-portal
     ];
   };
