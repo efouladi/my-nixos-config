@@ -51,6 +51,7 @@ in
       signing.signByDefault = true;
     };
   };
+
   services.syncthing = {
     enable = true;
     user = "shafo";
