@@ -24,7 +24,6 @@ in
       unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
-      chromium = pkgs.chromium.override { useOzone = true; enableVaapi = true; };
     };
   };
 
@@ -82,7 +81,6 @@ in
     firefox-wayland-pipewire-unwrapped
     firefox-wayland-pipewire
     pipewire
-    chromium
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
