@@ -81,6 +81,7 @@ in
     firefox-wayland-pipewire-unwrapped
     firefox-wayland-pipewire
     pipewire
+    polkit_gnome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

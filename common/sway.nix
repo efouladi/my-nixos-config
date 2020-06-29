@@ -165,6 +165,17 @@ in
           Restart = "on-failure";
         };
       };
+      polkit-gnome = {
+        description = "Legacy polkit authentication agent for GNOME";
+        partOf = [ "graphical-session.target" ];
+        wantedBy = [ "sway-session.target" ];
+
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        };
+      };
+
     };
 
     sockets.pipewire = {
