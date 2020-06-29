@@ -103,7 +103,7 @@ in
           WLR_DRM_NO_MODIFIERS = "1";
           XDG_CURRENT_DESKTOP = "sway";# https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
           XDG_SESSION_TYPE = "wayland";# https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
-    };
+        };
         serviceConfig = {
           Type = "simple";
           ExecStart = ''
@@ -165,6 +165,25 @@ in
           Restart = "on-failure";
         };
       };
+
+      swayidle = {
+        description = "Idle manager for Wayland";
+        documentation = [ "man:swayidle(1)" ];
+        partOf = [ "graphical-session.target" ];
+        wantedBy = [ "sway-session.target" ];
+
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = ''
+                    ${pkgs.swayidle}/bin/swayidle -w \
+                      timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000' \
+                      timeout 600 '${pkgs.sway}/bin/swaymsg output * dpms off' \
+                      resume '${pkgs.sway}/bin/swaymsg output * dpms on' \
+                      before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000'
+                    '';
+        };
+      };
+
       polkit-gnome = {
         description = "Legacy polkit authentication agent for GNOME";
         partOf = [ "graphical-session.target" ];
