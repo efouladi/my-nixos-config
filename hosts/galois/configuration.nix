@@ -45,7 +45,7 @@ in
       ".config/kanshi/config".source = ./dotfiles/kanshi.conf;
     };
     programs.git = {
-      userEmail = "efouladi@gmx.com";
+      userEmail = "shafo@posteo.net";
       userName = "Shayan Fouladi";
       signing.key = "EEB41F44";
       signing.signByDefault = true;
