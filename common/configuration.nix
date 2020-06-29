@@ -7,7 +7,7 @@ let
 
   home-manager =
     fetchTarball
-      https://github.com/rycee/home-manager/archive/release-19.09.tar.gz;
+      https://github.com/rycee/home-manager/archive/master.tar.gz;
 
   my-python-packages = python-packages: with python-packages; [
     dbus-python
