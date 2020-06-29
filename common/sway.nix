@@ -170,7 +170,7 @@ in
         description = "Idle manager for Wayland";
         documentation = [ "man:swayidle(1)" ];
         partOf = [ "graphical-session.target" ];
-        wantedBy = [ "sway-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
 
         serviceConfig = {
           Type = "simple";
@@ -181,17 +181,19 @@ in
                       resume '${pkgs.sway}/bin/swaymsg output * dpms on' \
                       before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000'
                     '';
+          Restart = "on-failure";
         };
       };
 
       polkit-gnome = {
         description = "Legacy polkit authentication agent for GNOME";
         partOf = [ "graphical-session.target" ];
-        wantedBy = [ "sway-session.target" ];
+        wantedBy = [ "graphical-session.target" ];
 
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
         };
       };
 
