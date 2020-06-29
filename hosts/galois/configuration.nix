@@ -24,7 +24,7 @@ in
 
   programs.adb.enable = true;
 
-  users.extraUsers.shafo = {
+  users.users.shafo = {
     home = "/home/shafo";
     isNormalUser = true;
     extraGroups = [ "wheel"
