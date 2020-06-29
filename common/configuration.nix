@@ -130,9 +130,16 @@ in
   ];
 
   virtualisation.libvirtd.enable = true;
-  programs.gnupg.agent = {
-   enable = true;
-   pinentryFlavor = "gnome3";
+
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      pinentryFlavor = "gnome3";
+    };
+    seahorse.enable = true;
   };
+
+  security.pam.services.login.enableGnomeKeyring = true;
+  services.gnome3.gnome-keyring.enable = true;
 }
 
