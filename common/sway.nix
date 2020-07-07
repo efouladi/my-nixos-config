@@ -46,21 +46,21 @@ in
 
   # Here we but a shell script into path, which lets us start sway.service (after importing the environment of the login shell).
   environment.systemPackages = with pkgs; [
-    (
-      pkgs.writeTextFile {
+    (pkgs.writeTextFile {
         name = "startsway";
         destination = "/bin/startsway";
         executable = true;
         text = ''
           #! ${pkgs.bash}/bin/bash
 
-          # first import environment variables from the login manager
-          systemctl --user import-environment
-          # then start the service
-          exec systemctl --user start sway.service
+          # Environment
+          while read -r l; do
+              eval export $l
+          done < <(/run/current-system/sw/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+
+          exec systemd-cat --identifier=sway sway
         '';
-      }
-    )
+    })
   ];
 
   # services.redshift = {
@@ -102,31 +102,6 @@ in
     };
 
     services = {
-      sway = {
-        description = "Sway - Wayland window manager";
-        documentation = [ "man:sway(5)" ];
-        bindsTo = [ "graphical-session.target" ];
-        wants = [ "graphical-session-pre.target" ];
-        after = [ "graphical-session-pre.target" ];
-        # We explicitly unset PATH here, as we want it to be set by
-        # systemctl --user import-environment in startsway
-        environment = {
-          PATH = lib.mkForce null;
-          MOZ_ENABLE_WAYLAND = "1";
-          WLR_DRM_NO_MODIFIERS = "1";
-          XDG_CURRENT_DESKTOP = "sway";# https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
-          XDG_SESSION_TYPE = "wayland";# https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
-        };
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = ''
-            ${pkgs.dbus}/bin/dbus-run-session ${pkgs.sway}/bin/sway --debug
-          '';
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
-        };
-      };
 
       kanshi = {
         description = "Kanshi output autoconfig ";
