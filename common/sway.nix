@@ -7,6 +7,7 @@ in
   nixpkgs.overlays = [ waylandOverlay ];
   programs.sway = {
     enable = true;
+    wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
       swaylock # lockscreen
       swayidle

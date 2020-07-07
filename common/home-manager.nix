@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home.file.".config/waybar/config".source = ./dotfiles/waybar.conf;
   programs = {
@@ -14,6 +14,11 @@
 
   services.network-manager-applet.enable = true;
   xsession.preferStatusNotifierItems = true;
+  gtk = {
+    enable = true;
+    font = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Sans 10";
     };
   };
 }
