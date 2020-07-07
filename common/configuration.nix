@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
-
   home-manager =
     fetchTarball
       https://github.com/rycee/home-manager/archive/master.tar.gz;
@@ -20,11 +16,6 @@ in
 {
   nixpkgs.config = {
     allowUnfree = true;
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
   };
 
   nixpkgs.overlays = [
@@ -82,6 +73,7 @@ in
     firefox-wayland-pipewire
     pipewire
     polkit_gnome
+    ispell
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -123,7 +115,7 @@ in
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.09"; # Did you read the comment?
+  system.stateVersion = "20.03"; # Did you read the comment?
 
   fonts.fonts = with pkgs; [
     font-awesome
@@ -139,7 +131,7 @@ in
     seahorse.enable = true;
   };
 
-  security.pam.services.login.enableGnomeKeyring = true;
+#  security.pam.services.login.enableGnomeKeyring = true;
   services.gnome3.gnome-keyring.enable = true;
 }
 
