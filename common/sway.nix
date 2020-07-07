@@ -12,7 +12,6 @@ in
       swayidle
       xwayland # for legacy apps
       waybar # status bar
-      mako # notification daemon
       kanshi # autorandr
       wofi
       wdisplays

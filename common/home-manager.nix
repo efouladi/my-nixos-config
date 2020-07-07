@@ -6,7 +6,12 @@
     ssh.enable = true;
     gpg.enable = true;
     alacritty.enable = true;
+    mako = {
       enable = true;
+      defaultTimeout = 5000;
+    };
+  };
+
     };
   };
 }
