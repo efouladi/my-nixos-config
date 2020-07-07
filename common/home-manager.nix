@@ -5,11 +5,8 @@
     git.enable = true;
     ssh.enable = true;
     gpg.enable = true;
-    kitty = {
+    alacritty.enable = true;
       enable = true;
-      settings = {
-        enable_audio_bell = false;
-      };
     };
   };
 }
