@@ -160,16 +160,19 @@ in
         partOf = [ "graphical-session.target" ];
         wantedBy = [ "graphical-session.target" ];
 
+
+        path = [ pkgs.swaylock pkgs.sway pkgs.bashInteractive ];
+
         serviceConfig = {
           Type = "simple";
           ExecStart = ''
-                    ${pkgs.swayidle}/bin/swayidle -w \
-                      timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000' \
-                      timeout 600 '${pkgs.sway}/bin/swaymsg output * dpms off' \
-                      resume '${pkgs.sway}/bin/swaymsg output * dpms on' \
-                      before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000'
-                    '';
-          Restart = "on-failure";
+                     ${pkgs.swayidle}/bin/swayidle -w \
+                        timeout 300 'swaylock -f -c 000000' \
+                        timeout 600 'swaymsg "output * dpms off"' \
+                        resume 'swaymsg "output * dpms on"' \
+                        before-sleep 'swaylock -f -c 000000'
+           '';
+
         };
       };
 
