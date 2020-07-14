@@ -69,7 +69,6 @@ in
     '';
   };
 
-
   xdg = {
     icons.enable = true;
     portal = {
