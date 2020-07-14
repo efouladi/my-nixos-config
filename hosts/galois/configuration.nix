@@ -36,8 +36,6 @@ in
                   ];
   };
 
-  swapDevices = [ { device = "/swapfile"; size = 4096; } ];
-
   home-manager.users.shafo = { ... }: {
     imports = [ ../../common/home-manager.nix ];
     home.file = {
