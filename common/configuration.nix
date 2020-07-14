@@ -71,7 +71,6 @@ in
     pinentry-gnome
     firefox-wayland-pipewire-unwrapped
     firefox-wayland-pipewire
-    pipewire
     polkit_gnome
     ispell
   ];

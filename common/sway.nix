@@ -35,16 +35,6 @@ in
     ];
   };
 
-  # environment = {
-  #   etc = {
-  #     # Put config files in /etc. Note that you also can put these in ~/.config, but then you can't manage them with NixOS anymore!
-  #     "sway/config".source = ./dotfiles/sway/config;
-  #     "xdg/waybar/config".source = ./dotfiles/waybar/config;
-  #     "xdg/waybar/style.css".source = ./dotfiles/waybar/style.css;
-  #   };
-  # };
-
-  # Here we but a shell script into path, which lets us start sway.service (after importing the environment of the login shell).
   environment.systemPackages = with pkgs; [
     (pkgs.writeTextFile {
         name = "startsway";
@@ -70,7 +60,7 @@ in
   # };
 
   programs.waybar.enable = true;
-  services.pipewire.enable = false;
+  services.pipewire.enable = true;
 
   services.fcron = {
     enable = true;
@@ -118,42 +108,6 @@ in
         };
       };
 
-      pipewire = {
-        enable = true;
-        description = "Multimedia Service";
-
-        environment = {
-          PIPEWIRE_DEBUG = "4";
-        };
-        path = [ pkgs.pipewire ];
-        requires= [ "pipewire.socket" "xdg-desktop-portal.service" ];
-
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.pipewire}/bin/pipewire";
-          Restart = "on-failure";
-        };
-
-        wantedBy = [ "default.target" ];
-      };
-
-      xdg-desktop-portal-wlr = {
-        enable = true;
-        description = "Portal service (wlroots implementation)";
-
-        requires= [ "pipewire.service" ];
-
-        serviceConfig = {
-          Type = "dbus";
-          BusName = "org.freedesktop.impl.portal.desktop.wlr";
-          ExecStart = [
-            "" # Override for trace
-            "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr -l TRACE"
-          ];
-          Restart = "on-failure";
-        };
-      };
-
       swayidle = {
         description = "Idle manager for Wayland";
         documentation = [ "man:swayidle(1)" ];
@@ -190,14 +144,5 @@ in
 
     };
 
-    sockets.pipewire = {
-      enable = true;
-
-      socketConfig = {
-        Priority = 6;
-        Backlog = 5;
-        ListenStream= "%t/pipewire-0";
-      };
-    };
   };
 }
