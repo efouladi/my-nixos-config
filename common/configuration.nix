@@ -131,7 +131,6 @@ in
     seahorse.enable = true;
   };
 
-#  security.pam.services.login.enableGnomeKeyring = true;
-  services.gnome3.gnome-keyring.enable = true;
+  security.polkit.enable = true;
 }
 

@@ -122,5 +122,6 @@ in
       package = pkgs.dejavu_fonts;
       name = "DejaVu Sans 10";
     };
+    gnome-keyring.enable = true;
   };
 }
