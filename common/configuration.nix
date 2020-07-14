@@ -73,6 +73,8 @@ in
     firefox-wayland-pipewire
     polkit_gnome
     ispell
+    clojure
+    clojure-lsp
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
