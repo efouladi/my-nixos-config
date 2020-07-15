@@ -29,6 +29,7 @@ in
     [
       ./sway.nix
       "${home-manager}/nixos"
+      ../modules
     ];
 
   networking = {

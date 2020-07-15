@@ -33,6 +33,8 @@ in
                     "libvirtd"
                     "adbusers"
                     "video"
+                    "input"
+                    "uinput"
                   ];
   };
 
@@ -41,6 +43,7 @@ in
     home.file = {
       ".config/sway/config".source = ./dotfiles/sway.conf;
       ".config/kanshi/config".source = ./dotfiles/kanshi.conf;
+      ".config/kmonad/config".source = ./dotfiles/kmonad.conf;
     };
     programs.git = {
       userEmail = "shafo@posteo.net";
@@ -57,4 +60,7 @@ in
     configDir = "/home/shafo/.syncthing";
     openDefaultPorts = true;
   };
+
+  hardware.kmonad.enable = true;
+
 }
