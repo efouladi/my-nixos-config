@@ -32,6 +32,7 @@ in
       wl-clipboard
       xdg-desktop-portal-wlr
       xdg-desktop-portal
+      sway-contrib.grimshot
     ];
   };
 
