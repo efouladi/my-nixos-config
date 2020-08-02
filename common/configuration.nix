@@ -53,7 +53,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    emacsGccPureGTK
+    emacsGcc
     kitty
     xdg_utils
     desktop-file-utils
